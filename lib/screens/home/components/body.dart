@@ -13,7 +13,8 @@ class Body extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+          padding: const EdgeInsets.only(
+              right: defaultPadding, left: defaultPadding, top: defaultPadding),
           child: Text(
             'Women',
             style: Theme.of(context)
@@ -22,19 +23,58 @@ class Body extends StatelessWidget {
                 .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-        Categories(),
-        Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(defaultPadding),
-              height: 180,
-              width: 160,
-              decoration: BoxDecoration(
-                  color: products[0].color,
-                  borderRadius: BorderRadius.circular(16)),
-              child: Image.asset(products[0].image),
-            )
-          ],
+        const Categories(),
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+          child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 18,
+                  crossAxisSpacing: 18,
+                  childAspectRatio: 0.75),
+              itemCount: products.length,
+              itemBuilder: (ctx, index) {
+                return ItemCard(
+                  product: products[index],
+                  press: () {},
+                );
+              }),
+        ))
+      ],
+    );
+  }
+}
+
+class ItemCard extends StatelessWidget {
+  final Product product;
+  final Function press;
+  const ItemCard({Key? key, required this.product, required this.press})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(defaultPadding),
+          height: 180,
+          width: 160,
+          decoration: BoxDecoration(
+              color: product.color, borderRadius: BorderRadius.circular(16)),
+          child: Image.asset(product.image),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: defaultPadding / 4),
+          child: Text(
+            product.title,
+            style: const TextStyle(color: cTextLightColor),
+          ),
+        ),
+        Text(
+          '\$${product.price}',
+          style: const TextStyle(fontWeight: FontWeight.bold),
         )
       ],
     );
