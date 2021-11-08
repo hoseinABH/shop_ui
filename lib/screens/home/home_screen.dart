@@ -25,7 +25,7 @@ AppBar buildAppbar() {
           color: cTextColor,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         width: defaultPadding / 2,
       ),
       IconButton(

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shop_ui/constants.dart';
 import 'package:shop_ui/models/Product.dart';
 import 'package:shop_ui/screens/home/components/categories.dart';
+import 'package:shop_ui/screens/home/components/item_card.dart';
+import 'package:shop_ui/screens/product/product_screen.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -37,45 +39,16 @@ class Body extends StatelessWidget {
               itemBuilder: (ctx, index) {
                 return ItemCard(
                   product: products[index],
-                  press: () {},
+                  press: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ProductScreen(product: products[index])));
+                  },
                 );
               }),
         ))
-      ],
-    );
-  }
-}
-
-class ItemCard extends StatelessWidget {
-  final Product product;
-  final Function press;
-  const ItemCard({Key? key, required this.product, required this.press})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(defaultPadding),
-          height: 180,
-          width: 160,
-          decoration: BoxDecoration(
-              color: product.color, borderRadius: BorderRadius.circular(16)),
-          child: Image.asset(product.image),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: defaultPadding / 4),
-          child: Text(
-            product.title,
-            style: const TextStyle(color: cTextLightColor),
-          ),
-        ),
-        Text(
-          '\$${product.price}',
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        )
       ],
     );
   }
