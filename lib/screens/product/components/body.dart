@@ -29,7 +29,6 @@ class Body extends StatelessWidget {
                       top: size.height * 0.12,
                       left: defaultPadding,
                       right: defaultPadding),
-                  height: 500,
                   decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
