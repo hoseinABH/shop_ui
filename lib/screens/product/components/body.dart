@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shop_ui/constants.dart';
 import 'package:shop_ui/models/Product.dart';
-import 'package:shop_ui/screens/product/components/cart_counter.dart';
+import 'package:shop_ui/screens/product/components/add_to_cart.dart';
 import 'package:shop_ui/screens/product/components/color_and_size.dart';
 import 'package:shop_ui/screens/product/components/description.dart';
+import 'package:shop_ui/screens/product/components/counter_with_fav.dart';
 import 'package:shop_ui/screens/product/components/product_title_with_image.dart';
 
 class Body extends StatelessWidget {
@@ -38,7 +39,8 @@ class Body extends StatelessWidget {
                     children: [
                       ColorAndSize(product: product),
                       Description(product: product),
-                      CartCounter()
+                      const CounterWithFav(),
+                      AddToCart(product: product)
                     ],
                   ),
                 ),
