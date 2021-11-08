@@ -38,7 +38,7 @@ class ProductScreen extends StatelessWidget {
             icon: SvgPicture.asset('assets/icons/search.svg')),
         IconButton(
             onPressed: () {}, icon: SvgPicture.asset('assets/icons/cart.svg')),
-        SizedBox(
+        const SizedBox(
           width: defaultPadding / 2,
         )
       ],
